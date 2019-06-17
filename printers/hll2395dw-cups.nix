@@ -21,6 +21,9 @@ stdenv.mkDerivation rec {
   installPhase = ''
     dpkg-deb -x $src $out
 
+    substituteInPlace $out/opt/brother/Printers/HLL2395DW/cupswrapper/brother-HLL2395DW-cups-en.ppd \
+      --replace '"Brother HLL2395DW' '"Brother HLL2395DW (modified)'
+
     substituteInPlace $out/opt/brother/Printers/HLL2395DW/lpd/lpdfilter \
       --replace /opt "$out/opt" \
       --replace /usr/bin/perl ${perl}/bin/perl \

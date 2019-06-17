@@ -93,9 +93,9 @@
     # Enable CUPS to print documents.
     printing.enable = true;
     printing.drivers = [
-      #pkgs.brlaser
-      #pkgs.hll2390dw-cups
-      (pkgs.callPackage ../../printers/hll2395dw-cups.nix {})
+      pkgs.brlaser
+      pkgs.hll2390dw-cups
+      #(pkgs.callPackage ../../printers/hll2395dw-cups.nix {})
     ];
 
     # Fix to enable trayer/nm-applet to start properly
