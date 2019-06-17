@@ -70,6 +70,20 @@
     "/run/current-system/sw/bin/zsh"
   ];
 
+  environment.etc."nsswitch.conf".text = "
+passwd:    files mymachines systemd
+group:     files mymachines systemd
+shadow:    files
+
+hosts:     files mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns mdns myhostname
+networks:  files
+
+ethers:    files
+services:  files
+protocols: files
+rpc:       files
+  ";
+
   networking = {
     hostName = "kahless";
     useDHCP = false;
@@ -101,6 +115,16 @@
     # Fix to enable trayer/nm-applet to start properly
     # (https://github.com/NixOS/nixpkgs/issues/16327#issuecomment-227218371).
     gnome3.at-spi2-core.enable = true;
+
+    # Avahi
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      publish = {
+        enable = true;
+        addresses = true;
+      };
+    };
 
     # Enable the X11 windowing system.
     xserver = {
