@@ -1,0 +1,13 @@
+diff --git a/tads3/tct3stm.cpp b/tads3/tct3stm.cpp
+index fc07d53..689f556 100644
+--- a/tads3/tct3stm.cpp
++++ b/tads3/tct3stm.cpp
+@@ -315,7 +315,7 @@ void CTPNVarIn::gen_iter_init(CTcPrsNode *coll_expr, int iter_local_id,
+     CTcPrsNode *create_iter = G_cg->get_metaclass_prop("collection", 0);
+ 
+     /* if we didn't find the property, it's an error */
+-    if (create_iter != VM_INVALID_PROP)
++    if ((unsigned long)create_iter != VM_INVALID_PROP)
+     {
+         /* 
+          *   generate a call to the createIterator() property on the
