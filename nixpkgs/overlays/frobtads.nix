@@ -11,6 +11,6 @@ self: super:
       ncurses.dev
       curl.dev
     ];
-    patches = [ ./fix-pointer-type.patch ];
+    patches = [ ./frobtads/fix-pointer-type.patch ];
   };
 }
