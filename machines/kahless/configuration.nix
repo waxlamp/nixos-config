@@ -228,6 +228,8 @@ rpc:       files
 
   #security.grsecurity.enable = false;
 
+  programs.gnupg.agent.enable = true;
+
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.kdm.enable = true;
   # services.xserver.desktopManager.kde4.enable = true;
