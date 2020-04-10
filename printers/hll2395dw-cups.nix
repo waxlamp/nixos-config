@@ -54,7 +54,7 @@ stdenv.mkDerivation rec {
     sed -i"" "s;A4;Letter;g" $out/opt/brother/Printers/HLL2395DW/inf/brHLL2395DWrc
 
     mkdir -p $out/lib/cups/filter/
-    ln -s $out/opt/brother/Printers/HLL2395DW/lpd/lpdfilter $out/lib/cups/filter/brother_lpdwrapper_HLL2395DW
+    ln -s $out/opt/brother/Printers/HLL2395DW/lpd/lpdfilter $out/lib/cups/filter/brother_lpdwrapper_HLL2390DW
 
     mkdir -p $out/share/cups/model
     ln -s $out/opt/brother/Printers/HLL2395DW/cupswrapper/brother-HLL2395DW-cups-en.ppd $out/share/cups/model/
