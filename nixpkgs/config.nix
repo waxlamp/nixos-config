@@ -3,6 +3,7 @@
 
   chromium = {
     enablePepperFlash = true;
+    enableWideVine = true;
   };
 
   packageOverrides = super: let self = super.pkgs; in {

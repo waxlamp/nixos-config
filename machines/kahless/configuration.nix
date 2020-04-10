@@ -221,7 +221,8 @@ rpc:       files
   hardware.bluetooth.enable = true;
 
   # 32-bit DRI support.
-  hardware.opengl.driSupport32Bit = true;
+  #hardware.opengl.driSupport32Bit = true;
+  hardware.opengl.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
