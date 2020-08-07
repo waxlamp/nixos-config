@@ -35,11 +35,15 @@
   boot.loader.timeout = 5;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  # Set up console properties.
+  console = {
+    #font = "lat9w-16";
+    font = "LatArCyrHeb-sun32";
+    keyMap = "us";
+  };
+
   # Select internationalisation properties.
   i18n = {
-    #consoleFont = "lat9w-16";
-    consoleFont = "LatArCyrHeb-sun32";
-    consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
   };
 
@@ -137,8 +141,6 @@ rpc:       files
               enable = true;
               enableContribAndExtras = true;
           };
-
-          default = "xmonad";
       };
 
       desktopManager.xterm.enable = false;
@@ -148,8 +150,7 @@ rpc:       files
           sh ~/.xinitrc
         '';
 
-        # Uncomment to restore default SLiM theme.
-        #slim.theme = null;
+        defaultSession = "none+xmonad";
       };
 
       synaptics = {
