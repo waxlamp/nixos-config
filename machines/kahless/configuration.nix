@@ -65,6 +65,9 @@
     #(wine.override { wineBuild = "wineWow"; })
     networkmanagerapplet
     docker_compose
+    alacritty
+    tmux
+    tmuxinator
 
     # Haskell packages for XMonad
     xmonad-with-packages
