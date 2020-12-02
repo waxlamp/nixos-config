@@ -71,6 +71,9 @@
 
     # Haskell packages for XMonad
     xmonad-with-packages
+
+    # Launcher for use with XMonad
+    rofi
   ];
 
   environment.shells = [
