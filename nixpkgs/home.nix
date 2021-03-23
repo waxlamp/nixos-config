@@ -53,7 +53,6 @@
     python3
     python38Packages.poetry
     rhythmbox
-    signal-desktop
     silver-searcher
     slack
     spotify
