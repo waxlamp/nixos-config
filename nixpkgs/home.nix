@@ -1,6 +1,9 @@
 { config, pkgs, ... }:
 
-{
+let
+  sources = import ./nix/sources.nix;
+  pkgs-2021-03-29 = import sources.nixpkgs-2021-03-29 {};
+in {
   # Let Home Manager install and manage itself.
   programs = {
     home-manager.enable = true;
@@ -47,6 +50,7 @@
     mpv
     ncdu
     neovim
+    niv
     nodejs
     pavucontrol
     pipenv
