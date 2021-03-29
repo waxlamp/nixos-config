@@ -43,6 +43,7 @@ in {
     diff-so-fancy
     evince
     fd
+    feh
     file
     flameshot
     gitFull
