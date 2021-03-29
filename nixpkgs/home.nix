@@ -74,5 +74,7 @@ in {
     yadm
     yarn
     zoom-us
-  ];
+  ] ++ (with pkgs-2021-03-29; [
+    vscode
+  ]);
 }
