@@ -11,16 +11,16 @@
         "url": "https://github.com/nmattia/niv/archive/af958e8057f345ee1aca714c1247ef3ba1c15f5e.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
-    "nixpkgs-2021-03-29": {
-        "branch": "release-20.03",
+    "nixpkgs-2021-03-30": {
+        "branch": "master",
         "description": "Nix Packages collection",
         "homepage": "",
-        "owner": "NixOS",
+        "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "1eea37190739485a01f5036558cd2ff257985678",
-        "sha256": "1yqzv172khcb7nkwfq53iixpfm2689zy7k7pmbxyhzimmy64l06j",
+        "rev": "528fff9a5e8a250a29da51f624a13c1dbbd1382b",
+        "sha256": "13gs3gf1v5ha8zp58l9hv5aa49p0k5mcav4jyz1ljmvm818z9wm8",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/1eea37190739485a01f5036558cd2ff257985678.tar.gz",
+        "url": "https://github.com/nixos/nixpkgs/archive/528fff9a5e8a250a29da51f624a13c1dbbd1382b.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }

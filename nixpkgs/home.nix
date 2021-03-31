@@ -2,7 +2,7 @@
 
 let
   sources = import ./nix/sources.nix;
-  pkgs-2021-03-29 = import sources.nixpkgs-2021-03-29 {};
+  pkgs-2021-03-30 = import sources.nixpkgs-2021-03-30 {};
 in {
   # Let Home Manager install and manage itself.
   programs = {
@@ -75,7 +75,7 @@ in {
     yadm
     yarn
     zoom-us
-  ] ++ (with pkgs-2021-03-29; [
+  ] ++ (with pkgs-2021-03-30; [
     vscode
   ]);
 }
