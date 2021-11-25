@@ -56,6 +56,17 @@
   # Copy system config to the store.
   system.copySystemConfiguration = true;
 
+  # Nix 2.4 from unstable release.
+  nix.package =
+    let pkgsUnstable = import (pkgs.fetchFromGitHub {
+      owner = "nixos";
+      repo = "nixpkgs";
+      rev = "6182b708a8841c6bf61fb12bd97949b746f8663e";
+      #sha256 = "1jwv20dxiaiwfqsa2jryib20d7ggvy5kfggna3cam6mafbpvad18";
+      sha256 = "E7isaioyGPQ5TGlpgi04dXPIDeRX3F4BJYq5nb2vcQc=";
+    }) { system = config.nixpkgs.system; };
+    in pkgsUnstable.nix_2_4;
+
   # List packages installed in system profile. To search by name, run:
   # -env -qaP | grep wget
   environment.systemPackages = with pkgs; [
