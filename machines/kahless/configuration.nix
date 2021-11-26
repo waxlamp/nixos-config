@@ -66,6 +66,9 @@
       sha256 = "E7isaioyGPQ5TGlpgi04dXPIDeRX3F4BJYq5nb2vcQc=";
     }) { system = config.nixpkgs.system; };
     in pkgsUnstable.nix_2_4;
+  nix.extraOptions = ''
+    experimental-features = nix-command flakes
+  '';
 
   # List packages installed in system profile. To search by name, run:
   # -env -qaP | grep wget
