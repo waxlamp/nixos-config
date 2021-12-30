@@ -83,6 +83,8 @@
     tmux
     tmuxinator
 
+    xorg.xmodmap
+
     # Haskell packages for XMonad
     xmonad-with-packages
 
@@ -117,6 +119,29 @@ rpc:       files
     wireless.enable = false;
   };
 
+  systemd.user.services."keyboard-layout" =
+    let
+      xmodmap-script = pkgs.writeText "xmodmap" ''
+        clear lock
+        clear mod4
+        keycode 66 = Super_L
+        add mod4 = Super_L
+      '';
+    in {
+      enable = true;
+      description = "Remap keys on my physical keyboard";
+      wantedBy = ["multi-user.target"];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.bash}/bin/bash ${pkgs.writeScript "keyboard-layout.sh" ''
+          #!/bin/sh
+
+          sleep 1
+          ${pkgs.xorg.xmodmap}/bin/xmodmap ${xmodmap-script}
+        ''}";
+      };
+  };
+
   # List services that you want to enable:
   services = {
     # Locate service.
@@ -148,6 +173,13 @@ rpc:       files
         enable = true;
         addresses = true;
       };
+    };
+
+    # Udev
+    udev = {
+      extraRules = ''
+        ACTION=="add", SUBSYSTEM=="input", ATTR{name}=="SONiX USB Keyboard", TAG+="systemd", ENV{SYSTEMD_USER_WANTS}+="keyboard-layout.service"
+      '';
     };
 
     # Enable the X11 windowing system.
