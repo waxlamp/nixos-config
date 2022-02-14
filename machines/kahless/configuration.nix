@@ -53,9 +53,6 @@
     #"nixos-config=/etc/nixos/configuration.nix"
   #];
 
-  # Copy system config to the store.
-  system.copySystemConfiguration = true;
-
   # Nix 2.4 from unstable release.
   nix.package =
     let pkgsUnstable = import (pkgs.fetchFromGitHub {
