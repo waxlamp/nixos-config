@@ -85,6 +85,7 @@
 
     # Haskell packages for XMonad
     xmonad-with-packages
+    xmobar
 
     # Launcher for use with XMonad
     rofi
