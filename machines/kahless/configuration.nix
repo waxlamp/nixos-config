@@ -23,10 +23,8 @@
         # this line prevents hanging on network split
         automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,vers=3.0";
       in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
-      #in ["credentials=/etc/nixos/smb-secrets"];
   };
 
-  #boot.kernelPackages = pkgs.linuxPackages_3_18;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   time.timeZone = "America/New_York";
@@ -38,7 +36,6 @@
 
   # Set up console properties.
   console = {
-    #font = "lat9w-16";
     font = "LatArCyrHeb-sun32";
     keyMap = "us";
   };
@@ -48,19 +45,12 @@
     defaultLocale = "en_US.UTF-8";
   };
 
-  # Set nix path.
-  #nix.nixPath = [
-    #"nixpkgs=/home/roni/.nix-defexpr/channels/nixos/nixpkgs"
-    #"nixos-config=/etc/nixos/configuration.nix"
-  #];
-
   # Nix 2.4 from unstable release.
   nix.package =
     let pkgsUnstable = import (pkgs.fetchFromGitHub {
       owner = "nixos";
       repo = "nixpkgs";
       rev = "6182b708a8841c6bf61fb12bd97949b746f8663e";
-      #sha256 = "1jwv20dxiaiwfqsa2jryib20d7ggvy5kfggna3cam6mafbpvad18";
       sha256 = "E7isaioyGPQ5TGlpgi04dXPIDeRX3F4BJYq5nb2vcQc=";
     }) { system = config.nixpkgs.system; };
     in pkgsUnstable.nix_2_4;
@@ -154,7 +144,6 @@ rpc:       files
     printing.enable = true;
     printing.drivers = [
       pkgs.brlaser
-      #pkgs.hll2390dw-cups
       (pkgs.callPackage ../../printers/hll2395dw-cups.nix {})
     ];
 
@@ -226,7 +215,7 @@ rpc:       files
     # Power management.
     logind = {
       lidSwitch = "ignore";
-      extraConfig = ''
+     extraConfig = ''
           HandlePowerKey=ignore
       '';
     };
@@ -247,15 +236,11 @@ rpc:       files
           systemctl suspend
         '';
     };
-
-    # Kubernetes.
-    #kubernetes = {
-      #roles = ["master" "node"];
-    #};
   };
 
   virtualisation = {
     docker.enable = true;
+
     virtualbox = {
       guest = {
         enable = false;
@@ -275,29 +260,12 @@ rpc:       files
   # Bluetooth
   hardware.bluetooth.enable = true;
 
-  # 32-bit DRI support.
-  #hardware.opengl.driSupport32Bit = true;
+  hardware.bluetooth.enable = true;
   hardware.opengl.enable = true;
 
   nixpkgs.config.allowUnfree = true;
 
-  #security.grsecurity.enable = false;
-
   programs.gnupg.agent.enable = true;
-
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.kdm.enable = true;
-  # services.xserver.desktopManager.kde4.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.extraUsers.guest = {
-  #   name = "guest";
-  #   group = "users";
-  #   uid = 1000;
-  #   createHome = true;
-  #   home = "/home/guest";
-  #   shell = "/run/current-system/sw/bin/bash";
-  # };
 
   users.extraUsers = {
     roni = {
@@ -312,9 +280,7 @@ rpc:       files
       uid = 1000;
       home = "/home/roni";
       shell = "/run/current-system/sw/bin/zsh";
-      packages = with pkgs; [
-        hello
-      ];
+      packages = with pkgs; [];
     };
   };
 }
