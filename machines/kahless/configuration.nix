@@ -147,10 +147,6 @@ rpc:       files
       (pkgs.callPackage ../../printers/hll2395dw-cups.nix {})
     ];
 
-    # Fix to enable trayer/nm-applet to start properly
-    # (https://github.com/NixOS/nixpkgs/issues/16327#issuecomment-227218371).
-    gnome3.at-spi2-core.enable = true;
-
     # Enable bluetooth.
     blueman.enable = true;
 
