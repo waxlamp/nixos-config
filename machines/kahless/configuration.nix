@@ -255,10 +255,13 @@ rpc:       files
   };
 
   # PulseAudio
-  hardware.pulseaudio.enable = true;
+  sound.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
 
-  # Bluetooth
-  hardware.bluetooth.enable = true;
+    # The full package includes bluetooth support.
+    package = pkgs.pulseaudioFull;
+  };
 
   hardware.bluetooth.enable = true;
   hardware.opengl.enable = true;
