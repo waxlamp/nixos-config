@@ -273,6 +273,7 @@ rpc:       files
   users.extraUsers = {
     roni = {
       name = "roni";
+      isNormalUser = true;
       group = "users";
       extraGroups = [
         "wheel"
