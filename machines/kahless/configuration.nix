@@ -214,10 +214,12 @@ rpc:       files
 
       libinput = {
         enable = true;
-        clickMethod = "clickfinger";
-        additionalOptions = ''
-          Option "TappingButtonMap" "lmr"
-        '';
+        touchpad = {
+          clickMethod = "clickfinger";
+          additionalOptions = ''
+            Option "TappingButtonMap" "lmr"
+          '';
+        };
       };
     };
 
