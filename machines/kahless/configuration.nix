@@ -72,9 +72,7 @@
   # -env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     zsh
-    #mesa
     pmutils
-    #(wine.override { wineBuild = "wineWow"; })
     networkmanagerapplet
     docker_compose
     alacritty
