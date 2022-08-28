@@ -80,7 +80,7 @@
   ];
 
   environment.shells = [
-    "/run/current-system/sw/bin/zsh"
+    pkgs.zsh
   ];
 
   environment.etc."nsswitch.conf".text = "
@@ -279,7 +279,7 @@ rpc:       files
       ];
       uid = 1000;
       home = "/home/roni";
-      shell = "/run/current-system/sw/bin/zsh";
+      shell = pkgs.zsh;
       packages = with pkgs; [];
     };
   };
