@@ -162,6 +162,9 @@ rpc:       files
     # (https://github.com/NixOS/nixpkgs/issues/16327#issuecomment-227218371).
     gnome3.at-spi2-core.enable = true;
 
+    # Enable bluetooth.
+    blueman.enable = true;
+
     # Avahi
     avahi = {
       enable = true;
