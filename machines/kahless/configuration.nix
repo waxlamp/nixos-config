@@ -61,12 +61,10 @@
   # List packages installed in system profile. To search by name, run:
   # -env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    zsh
     pmutils
     networkmanagerapplet
     docker_compose
     alacritty
-    tmux
     tmuxinator
 
     xorg.xmodmap
@@ -264,7 +262,13 @@ rpc:       files
 
   nixpkgs.config.allowUnfree = true;
 
-  programs.gnupg.agent.enable = true;
+  programs = {
+    gnupg.agent.enable = true;
+
+    tmux.enable = true;
+
+    zsh.enable = true;
+  };
 
   users.extraUsers = {
     roni = {
