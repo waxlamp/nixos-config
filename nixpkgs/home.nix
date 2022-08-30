@@ -3,6 +3,8 @@
 let
   sources = import ./nix/sources.nix;
   pkgs-2021-03-30 = import sources.nixpkgs-2021-03-30 {};
+  pkgs-2021-06-26 = import sources.nixpkgs-2021-06-26 {};
+  pkgs-2021-07-13 = import sources.nixpkgs-2021-07-13 {};
 in {
   # Let Home Manager install and manage itself.
   programs = {
