@@ -5,6 +5,10 @@ let
   pkgs-2021-03-30 = import sources.nixpkgs-2021-03-30 {};
   pkgs-2021-06-26 = import sources.nixpkgs-2021-06-26 {};
   pkgs-2021-07-13 = import sources.nixpkgs-2021-07-13 {};
+
+  nixpkgs = (builtins.getFlake "nixpkgs").legacyPackages.x86_64-linux;
+  nixpkgs-unstable = (builtins.getFlake "nixpkgs-unstable").legacyPackages.x86_64-linux;
+  flake = url: (builtins.getFlake url).defaultPackage.x86_64-linux;
 in {
   # Let Home Manager install and manage itself.
   programs = {
