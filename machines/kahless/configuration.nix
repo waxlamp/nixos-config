@@ -261,8 +261,6 @@ rpc:       files
   hardware.bluetooth.enable = true;
   hardware.opengl.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
-
   programs = {
     gnupg.agent.enable = true;
 
