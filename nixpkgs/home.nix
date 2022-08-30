@@ -32,15 +32,16 @@ in {
   # changes in each release.
   home.stateVersion = "21.03";
 
-  home.packages = with pkgs; [
+  home.packages = with nixpkgs; [
+    (flake "github:waxlamp/elgato/flakes")
+
     acpi
     bat
+    firefox
     fzf
     htop
     jetbrains-mono
     jq
-    kbfs
-    keybase-gui
     lsof
     magic-wormhole
     bitwarden-cli
@@ -54,34 +55,40 @@ in {
     flameshot
     gitFull
     killall
+    lazygit
+    miller
     mpv
     ncdu
     neovim
-    niv
     nodejs
+    ntp
     pavucontrol
     pipenv
+    poppler_utils
     python3
     python38Packages.poetry
     rhythmbox
+    shotgun
     silver-searcher
-    slack
+    slop
     spotify
     sweethome3d.application
-    tmux
+    terraform_0_15
     tmuxinator
     trayer
+    tree
     unclutter
     unzip
+    up
+    vscode
     xclip
     xlockmore
     xorg.xbacklight
-    xorg.xmodmap
     xss-lock
     yadm
     yarn
     zoom-us
-  ] ++ (with pkgs-2021-03-30; [
-    vscode
+  ] ++ (with nixpkgs-unstable; [
+    slack
   ]);
 }
