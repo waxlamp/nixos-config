@@ -66,6 +66,7 @@
     docker_compose
     alacritty
     tmuxinator
+    kbfs
 
     xorg.xmodmap
 
