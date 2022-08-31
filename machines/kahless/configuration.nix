@@ -15,17 +15,16 @@
     fsType = "ext4";
   };
 
-  #fileSystems."/mnt/kitwarenas5" = {
-    #device = "//kitwarenas5/Share";
-    #fsType = "cifs";
-    #options =
-      #let
-        ## this line prevents hanging on network split
-        #automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-      #in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
-  #};
+  fileSystems."/mnt/kitwarenas2" = {
+    device = "//kitwarenas2/Share";
+    fsType = "cifs";
+    options =
+      let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,vers=3.0";
+      in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
+  };
 
-  #boot.kernelPackages = pkgs.linuxPackages_3_18;
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   time.timeZone = "America/New_York";
@@ -37,7 +36,6 @@
 
   # Set up console properties.
   console = {
-    #font = "lat9w-16";
     font = "LatArCyrHeb-sun32";
     keyMap = "us";
   };
@@ -47,22 +45,12 @@
     defaultLocale = "en_US.UTF-8";
   };
 
-  # Set nix path.
-  #nix.nixPath = [
-    #"nixpkgs=/home/roni/.nix-defexpr/channels/nixos/nixpkgs"
-    #"nixos-config=/etc/nixos/configuration.nix"
-  #];
-
-  # Copy system config to the store.
-  system.copySystemConfiguration = true;
-
   # Nix 2.4 from unstable release.
   nix.package =
     let pkgsUnstable = import (pkgs.fetchFromGitHub {
       owner = "nixos";
       repo = "nixpkgs";
       rev = "6182b708a8841c6bf61fb12bd97949b746f8663e";
-      #sha256 = "1jwv20dxiaiwfqsa2jryib20d7ggvy5kfggna3cam6mafbpvad18";
       sha256 = "E7isaioyGPQ5TGlpgi04dXPIDeRX3F4BJYq5nb2vcQc=";
     }) { system = config.nixpkgs.system; };
     in pkgsUnstable.nix_2_4;
@@ -73,27 +61,25 @@
   # List packages installed in system profile. To search by name, run:
   # -env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    zsh
-    #mesa
     pmutils
-    #(wine.override { wineBuild = "wineWow"; })
     networkmanagerapplet
     docker_compose
     alacritty
-    tmux
     tmuxinator
+    kbfs
 
     xorg.xmodmap
 
     # Haskell packages for XMonad
     xmonad-with-packages
+    xmobar
 
     # Launcher for use with XMonad
     rofi
   ];
 
   environment.shells = [
-    "/run/current-system/sw/bin/zsh"
+    pkgs.zsh
   ];
 
   environment.etc."nsswitch.conf".text = "
@@ -157,13 +143,11 @@ rpc:       files
     printing.enable = true;
     printing.drivers = [
       pkgs.brlaser
-      #pkgs.hll2390dw-cups
       (pkgs.callPackage ../../printers/hll2395dw-cups.nix {})
     ];
 
-    # Fix to enable trayer/nm-applet to start properly
-    # (https://github.com/NixOS/nixpkgs/issues/16327#issuecomment-227218371).
-    gnome3.at-spi2-core.enable = true;
+    # Enable bluetooth.
+    blueman.enable = true;
 
     # Avahi
     avahi = {
@@ -214,17 +198,19 @@ rpc:       files
 
       libinput = {
         enable = true;
-        clickMethod = "clickfinger";
-        additionalOptions = ''
-          Option "TappingButtonMap" "lmr"
-        '';
+        touchpad = {
+          clickMethod = "clickfinger";
+          additionalOptions = ''
+            Option "TappingButtonMap" "lmr"
+          '';
+        };
       };
     };
 
     # Power management.
     logind = {
       lidSwitch = "ignore";
-      extraConfig = ''
+     extraConfig = ''
           HandlePowerKey=ignore
       '';
     };
@@ -245,15 +231,11 @@ rpc:       files
           systemctl suspend
         '';
     };
-
-    # Kubernetes.
-    #kubernetes = {
-      #roles = ["master" "node"];
-    #};
   };
 
   virtualisation = {
     docker.enable = true;
+
     virtualbox = {
       guest = {
         enable = false;
@@ -268,38 +250,29 @@ rpc:       files
   };
 
   # PulseAudio
-  hardware.pulseaudio.enable = true;
+  sound.enable = true;
+  hardware.pulseaudio = {
+    enable = true;
 
-  # Bluetooth
+    # The full package includes bluetooth support.
+    package = pkgs.pulseaudioFull;
+  };
+
   hardware.bluetooth.enable = true;
-
-  # 32-bit DRI support.
-  #hardware.opengl.driSupport32Bit = true;
   hardware.opengl.enable = true;
 
-  nixpkgs.config.allowUnfree = true;
+  programs = {
+    gnupg.agent.enable = true;
 
-  #security.grsecurity.enable = false;
+    tmux.enable = true;
 
-  programs.gnupg.agent.enable = true;
-
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.kdm.enable = true;
-  # services.xserver.desktopManager.kde4.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  # users.extraUsers.guest = {
-  #   name = "guest";
-  #   group = "users";
-  #   uid = 1000;
-  #   createHome = true;
-  #   home = "/home/guest";
-  #   shell = "/run/current-system/sw/bin/bash";
-  # };
+    zsh.enable = true;
+  };
 
   users.extraUsers = {
     roni = {
       name = "roni";
+      isNormalUser = true;
       group = "users";
       extraGroups = [
         "wheel"
@@ -309,10 +282,8 @@ rpc:       files
       ];
       uid = 1000;
       home = "/home/roni";
-      shell = "/run/current-system/sw/bin/zsh";
-      packages = with pkgs; [
-        hello
-      ];
+      shell = pkgs.zsh;
+      packages = with pkgs; [];
     };
   };
 }
