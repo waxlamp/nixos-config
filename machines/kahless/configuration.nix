@@ -63,7 +63,7 @@
   environment.systemPackages = with pkgs; [
     pmutils
     networkmanagerapplet
-    docker_compose
+    docker-compose
     alacritty
     tmuxinator
     kbfs
