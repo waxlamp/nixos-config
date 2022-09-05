@@ -5,11 +5,28 @@
     url = "github:nix-community/home-manager/release-22.05";
     inputs.nixpkgs.follows = "nixpkgs";
   };
-  inputs.elgato.url = "github:waxlamp/elgato/flakes";
+  inputs.elgato = {
+    url = "github:waxlamp/elgato/flakes";
+    inputs.nixkgs.follows = "nixpkgs";
+  };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, elgato }: {
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, elgato }:
+  let
+    system = "x86_64-linux";
+    unflake = flake: import flake {
+      inherit system;
+      config.allowUnfree = true;
+    };
+    specialArgs = {
+      nixpkgs = unflake nixpkgs;
+      nixpkgs-unstable = unflake nixpkgs-unstable;
+      elgato = elgato.defaultPackage.${system};
+    };
+  in {
     nixosConfigurations.kahless = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
+      inherit system;
+      inherit specialArgs;
+
       modules = [
         ./configuration.nix
 
@@ -19,9 +36,7 @@
             useUserPackages = true;
             users.roni = import ./home.nix;
 
-            extraSpecialArgs = {
-              inherit elgato;
-            };
+            extraSpecialArgs = specialArgs;
           };
         }
 

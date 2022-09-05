@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, nixpkgs, elgato, ... }:
 
 {
   imports =
@@ -60,7 +60,7 @@
 
   # List packages installed in system profile. To search by name, run:
   # -env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with nixpkgs; [
     pmutils
     networkmanagerapplet
     docker-compose

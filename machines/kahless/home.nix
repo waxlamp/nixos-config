@@ -1,7 +1,9 @@
 { config, pkgs, specialArgs, ... }:
 
 let
-  elgato = specialArgs.elgato.defaultPackage.x86_64-linux;
+  nixpkgs = specialArgs.nixpkgs;
+  nixpkgs-unstable = specialArgs.nixpkgs-unstable;
+  elgato = specialArgs.elgato;
 in {
   nixpkgs.config.allowUnfree = true;
 
@@ -27,7 +29,7 @@ in {
   # changes in each release.
   home.stateVersion = "21.03";
 
-  home.packages = with pkgs; [
+  home.packages = with nixpkgs; [
     elgato
 
     acpi
