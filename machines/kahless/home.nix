@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, specialArgs, ... }:
 
 let
   sources = import ./nix/sources.nix;
@@ -6,9 +6,9 @@ let
   pkgs-2021-06-26 = import sources.nixpkgs-2021-06-26 {};
   pkgs-2021-07-13 = import sources.nixpkgs-2021-07-13 {};
 
-  nixpkgs = (builtins.getFlake "nixpkgs").legacyPackages.x86_64-linux;
-  nixpkgs-unstable = (builtins.getFlake "nixpkgs-unstable").legacyPackages.x86_64-linux;
-  flake = url: (builtins.getFlake url).defaultPackage.x86_64-linux;
+  nixpkgs = specialArgs.nixpkgs.legacyPackages.x86_64-linux;
+  nixpkgs-unstable = specialArgs.nixpkgs-unstable;
+  elgato = specialArgs.elgato.defaultPackage.x86_64-linux;
 in {
   # Let Home Manager install and manage itself.
   programs = {
@@ -33,7 +33,7 @@ in {
   home.stateVersion = "21.03";
 
   home.packages = with nixpkgs; [
-    (flake "github:waxlamp/elgato/flakes")
+    elgato
 
     acpi
     bat
@@ -71,7 +71,7 @@ in {
     shotgun
     silver-searcher
     slop
-    spotify
+    #spotify
     sweethome3d.application
     terraform_0_15
     tmuxinator
@@ -80,15 +80,15 @@ in {
     unclutter
     unzip
     up
-    vscode
+    #vscode
     xclip
     xlockmore
     xorg.xbacklight
     xss-lock
     yadm
     yarn
-    zoom-us
+    #zoom-us
   ] ++ (with nixpkgs-unstable; [
-    slack
+    #slack
   ]);
 }
