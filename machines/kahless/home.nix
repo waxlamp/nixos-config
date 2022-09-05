@@ -1,11 +1,6 @@
 { config, pkgs, specialArgs, ... }:
 
 let
-  sources = import ./nix/sources.nix;
-  pkgs-2021-03-30 = import sources.nixpkgs-2021-03-30 {};
-  pkgs-2021-06-26 = import sources.nixpkgs-2021-06-26 {};
-  pkgs-2021-07-13 = import sources.nixpkgs-2021-07-13 {};
-
   nixpkgs = specialArgs.nixpkgs.legacyPackages.x86_64-linux;
   nixpkgs-unstable = specialArgs.nixpkgs-unstable;
   elgato = specialArgs.elgato.defaultPackage.x86_64-linux;
