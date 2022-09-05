@@ -5,6 +5,8 @@ let
   nixpkgs-unstable = specialArgs.nixpkgs-unstable;
   elgato = specialArgs.elgato.defaultPackage.x86_64-linux;
 in {
+  nixpkgs.config.allowUnfree = true;
+
   # Let Home Manager install and manage itself.
   programs = {
     home-manager.enable = true;
@@ -27,7 +29,7 @@ in {
   # changes in each release.
   home.stateVersion = "21.03";
 
-  home.packages = with nixpkgs; [
+  home.packages = with pkgs; [
     elgato
 
     acpi
@@ -65,8 +67,9 @@ in {
     rhythmbox
     shotgun
     silver-searcher
+    slack
     slop
-    #spotify
+    spotify
     sweethome3d.application
     terraform_0_15
     tmuxinator
@@ -75,15 +78,13 @@ in {
     unclutter
     unzip
     up
-    #vscode
+    vscode
     xclip
     xlockmore
     xorg.xbacklight
     xss-lock
     yadm
     yarn
-    #zoom-us
-  ] ++ (with nixpkgs-unstable; [
-    #slack
-  ]);
+    zoom-us
+  ];
 }

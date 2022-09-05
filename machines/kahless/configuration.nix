@@ -76,12 +76,6 @@
 
     # Launcher for use with XMonad
     rofi
-
-    # Unfree packages that should be in home.nix
-    slack
-    spotify
-    vscode
-    zoom-us
   ];
 
   environment.shells = [
