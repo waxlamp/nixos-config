@@ -1,8 +1,6 @@
 { config, pkgs, specialArgs, ... }:
 
 let
-  nixpkgs = specialArgs.nixpkgs.legacyPackages.x86_64-linux;
-  nixpkgs-unstable = specialArgs.nixpkgs-unstable;
   elgato = specialArgs.elgato.defaultPackage.x86_64-linux;
 in {
   nixpkgs.config.allowUnfree = true;

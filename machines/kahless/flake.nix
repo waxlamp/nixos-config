@@ -20,7 +20,7 @@
             users.roni = import ./home.nix;
 
             extraSpecialArgs = {
-              inherit nixpkgs nixpkgs-unstable elgato;
+              inherit elgato;
             };
           };
         }
