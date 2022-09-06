@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, nixpkgs, elgato, ... }:
+{ config, pkgs, nixpkgs, nixpkgs-unstable, elgato, ... }:
 
 {
   imports =
@@ -45,15 +45,8 @@
     defaultLocale = "en_US.UTF-8";
   };
 
-  # Nix 2.4 from unstable release.
-  nix.package =
-    let pkgsUnstable = import (pkgs.fetchFromGitHub {
-      owner = "nixos";
-      repo = "nixpkgs";
-      rev = "6182b708a8841c6bf61fb12bd97949b746f8663e";
-      sha256 = "E7isaioyGPQ5TGlpgi04dXPIDeRX3F4BJYq5nb2vcQc=";
-    }) { system = config.nixpkgs.system; };
-    in pkgsUnstable.nix_2_4;
+  # Install Nix 2.11 from unstable.
+  nix.package = nixpkgs-unstable.nix;
   nix.extraOptions = ''
     experimental-features = nix-command flakes
   '';
