@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, nixpkgs, nixpkgs-unstable, elgato, ... }:
+{ config, nixpkgs, nixpkgs-unstable, elgato, ... }:
 
 {
   imports =
@@ -25,7 +25,7 @@
       in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = nixpkgs.linuxPackages_latest;
 
   time.timeZone = "America/New_York";
 
@@ -72,7 +72,7 @@
   ];
 
   environment.shells = [
-    pkgs.zsh
+    nixpkgs.zsh
   ];
 
   environment.etc."nsswitch.conf".text = "
@@ -100,7 +100,7 @@ rpc:       files
 
   systemd.user.services."keyboard-layout" =
     let
-      xmodmap-script = pkgs.writeText "xmodmap" ''
+      xmodmap-script = nixpkgs.writeText "xmodmap" ''
         clear lock
         clear mod4
         keycode 66 = Super_L
@@ -112,11 +112,11 @@ rpc:       files
       wantedBy = ["multi-user.target"];
       serviceConfig = {
         Type = "oneshot";
-        ExecStart = "${pkgs.bash}/bin/bash ${pkgs.writeScript "keyboard-layout.sh" ''
+        ExecStart = "${nixpkgs.bash}/bin/bash ${nixpkgs.writeScript "keyboard-layout.sh" ''
           #!/bin/sh
 
           sleep 1
-          ${pkgs.xorg.xmodmap}/bin/xmodmap ${xmodmap-script}
+          ${nixpkgs.xorg.xmodmap}/bin/xmodmap ${xmodmap-script}
         ''}";
       };
   };
@@ -135,8 +135,8 @@ rpc:       files
     # Enable CUPS to print documents.
     printing.enable = true;
     printing.drivers = [
-      pkgs.brlaser
-      (pkgs.callPackage ../../printers/hll2395dw-cups.nix {})
+      nixpkgs.brlaser
+      (nixpkgs.callPackage ../../printers/hll2395dw-cups.nix {})
     ];
 
     # Enable bluetooth.
@@ -248,7 +248,7 @@ rpc:       files
     enable = true;
 
     # The full package includes bluetooth support.
-    package = pkgs.pulseaudioFull;
+    package = nixpkgs.pulseaudioFull;
   };
 
   hardware.bluetooth.enable = true;
@@ -275,8 +275,8 @@ rpc:       files
       ];
       uid = 1000;
       home = "/home/roni";
-      shell = pkgs.zsh;
-      packages = with pkgs; [];
+      shell = nixpkgs.zsh;
+      packages = with nixpkgs; [];
     };
   };
 }
