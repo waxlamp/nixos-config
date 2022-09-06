@@ -41,7 +41,7 @@
         }
 
         # Set up nix registry with nixpkgs flakes.
-        ({ lib, ... }: {
+        ({ ... }: {
           nix.registry.nixpkgs.flake = nixpkgs;
           nix.registry.nixpkgs-unstable.flake = nixpkgs-unstable;
           nix.registry.elgato.flake = elgato;
