@@ -38,7 +38,10 @@
 
   # Set up console properties.
   console = {
-    font = "LatArCyrHeb-sun32";
+    packages = with nixpkgs; [
+      terminus_font
+    ];
+    font = "ter-u32b";
     keyMap = "us";
   };
 
