@@ -10,6 +10,8 @@
       ./hardware-configuration.nix
     ];
 
+  system.stateVersion = "22.05";
+
   fileSystems."/home" = {
     device = "/dev/sda2";
     fsType = "ext4";
