@@ -7,7 +7,7 @@
   };
   inputs.elgato = {
     url = "github:waxlamp/elgato/flakes";
-    inputs.nixkgs.follows = "nixpkgs";
+    inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, elgato }:
