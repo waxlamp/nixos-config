@@ -28,7 +28,7 @@
       inherit specialArgs;
 
       modules = [
-        ./configuration.nix
+        ./machines/kahless/configuration.nix
 
         home-manager.nixosModules.home-manager {
           home-manager = {
