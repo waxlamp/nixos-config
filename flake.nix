@@ -1,14 +1,16 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
-  inputs.nixpkgs-unstable.url = "github:NixOS/nixpkgs";
-  inputs.home-manager = {
-    url = "github:nix-community/home-manager/release-22.05";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
-  inputs.elgato = {
-    url = "github:waxlamp/elgato/flakes";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.05";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-22.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    elgato = {
+      url = "github:waxlamp/elgato/flakes";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+};
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, elgato }:
   let
