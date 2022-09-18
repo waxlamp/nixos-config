@@ -8,14 +8,8 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./system.nix
     ];
-
-  system.stateVersion = "22.05";
-
-  fileSystems."/home" = {
-    device = "/dev/sda2";
-    fsType = "ext4";
-  };
 
   fileSystems."/mnt/kitwarenas2" = {
     device = "//kitwarenas2/Share";
@@ -27,15 +21,6 @@
       in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
   };
 
-  boot.kernelPackages = nixpkgs.linuxPackages_latest;
-
-  time.timeZone = "America/New_York";
-
-  # Use the gummiboot efi boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.timeout = 5;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   # Set up console properties.
   console = {
     packages = with nixpkgs; [
@@ -43,11 +28,6 @@
     ];
     font = "ter-u32b";
     keyMap = "us";
-  };
-
-  # Select internationalisation properties.
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
   };
 
   # Install Nix 2.11 from unstable.
