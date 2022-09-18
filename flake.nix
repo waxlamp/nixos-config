@@ -19,10 +19,12 @@
       inherit system;
       config.allowUnfree = true;
     };
+    nixpkgs' = unflake nixpkgs;
     specialArgs = {
-      nixpkgs = unflake nixpkgs;
+      nixpkgs = nixpkgs';
       nixpkgs-unstable = unflake nixpkgs-unstable;
       elgato = elgato.defaultPackage.${system};
+      pkgs = nixpkgs';
     };
   in {
     nixosConfigurations.kahless = nixpkgs.lib.nixosSystem {
@@ -47,13 +49,6 @@
           nix.registry.nixpkgs.flake = nixpkgs;
           nix.registry.nixpkgs-unstable.flake = nixpkgs-unstable;
           nix.registry.elgato.flake = elgato;
-        })
-
-        # Configure nixpkgs.
-        ({ ... }: {
-          nixpkgs.config = {
-            allowUnfree = true;
-          };
         })
       ];
     };
