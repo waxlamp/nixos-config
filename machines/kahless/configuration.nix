@@ -12,6 +12,7 @@
     ./mounts.nix
     ./nix.nix
     ./packages.nix
+    ./networking.nix
   ];
 
   environment.shells = [
@@ -31,15 +32,6 @@
     protocols: files
     rpc:       files
   '';
-
-  networking = {
-    hostName = "kahless";
-    useDHCP = false;
-    networkmanager = {
-        enable = true;
-    };
-    wireless.enable = false;
-  };
 
   systemd.user.services."keyboard-layout" =
     let
