@@ -13,25 +13,12 @@
     ./nix.nix
     ./packages.nix
     ./networking.nix
+    ./nsswitch.nix
   ];
 
   environment.shells = [
     nixpkgs.zsh
   ];
-
-  environment.etc."nsswitch.conf".text = ''
-    passwd:    files mymachines systemd
-    group:     files mymachines systemd
-    shadow:    files
-
-    hosts:     files mymachines mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns mdns myhostname
-    networks:  files
-
-    ethers:    files
-    services:  files
-    protocols: files
-    rpc:       files
-  '';
 
   systemd.user.services."keyboard-layout" =
     let
