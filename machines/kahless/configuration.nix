@@ -5,15 +5,14 @@
 { nixpkgs, nixpkgs-unstable, elgato, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./system.nix
-      ./console.nix
-      ./mounts.nix
-      ./nix.nix
-      ./packages.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ./system.nix
+    ./console.nix
+    ./mounts.nix
+    ./nix.nix
+    ./packages.nix
+  ];
 
   environment.shells = [
     nixpkgs.zsh
