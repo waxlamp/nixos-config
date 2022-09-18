@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./system.nix
+      ./console.nix
     ];
 
   fileSystems."/mnt/kitwarenas2" = {
@@ -19,15 +20,6 @@
         # this line prevents hanging on network split
         automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s,vers=3.0";
       in ["${automount_opts},credentials=/etc/nixos/smb-secrets"];
-  };
-
-  # Set up console properties.
-  console = {
-    packages = with nixpkgs; [
-      terminus_font
-    ];
-    font = "ter-u32b";
-    keyMap = "us";
   };
 
   # Install Nix 2.11 from unstable.
