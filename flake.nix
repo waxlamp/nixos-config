@@ -53,15 +53,17 @@
       pkgs = nixpkgs';
     };
   in {
-    nixosConfigurations.kahless = nixpkgs.lib.nixosSystem {
-      inherit system;
-      inherit specialArgs;
+    nixosConfigurations = {
+      kahless = nixpkgs.lib.nixosSystem {
+        inherit system;
+        inherit specialArgs;
 
-      modules = [
-        ./machines/kahless/configuration.nix
-        home-manager.nixosModules.home-manager home-manager-config
-        flake-registry-module
-      ];
+        modules = [
+          ./machines/kahless/configuration.nix
+          home-manager.nixosModules.home-manager home-manager-config
+          flake-registry-module
+        ];
+      };
     };
   };
 }
