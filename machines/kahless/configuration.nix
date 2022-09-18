@@ -11,13 +11,8 @@
       ./system.nix
       ./console.nix
       ./mounts.nix
+      ./nix.nix
     ];
-
-  # Install Nix 2.11 from unstable.
-  nix.package = nixpkgs-unstable.nix;
-  nix.extraOptions = ''
-    experimental-features = nix-command flakes
-  '';
 
   # List packages installed in system profile. To search by name, run:
   # -env -qaP | grep wget
