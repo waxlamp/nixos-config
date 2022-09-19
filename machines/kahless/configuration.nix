@@ -23,6 +23,7 @@
     ./services/avahi.nix
     ./services/virtualization.nix
     ./services/audio.nix
+    ./services/power-management.nix
   ];
 
   environment.shells = [
@@ -72,30 +73,6 @@
       };
     };
 
-    # Power management.
-    logind = {
-      lidSwitch = "ignore";
-     extraConfig = ''
-          HandlePowerKey=ignore
-      '';
-    };
-    acpid = {
-      enable = true;
-      lidEventCommands =
-        ''
-          export PATH=$PATH:/run/current-system/sw/bin
-
-          lid_state=$(cat /proc/acpi/button/lid/LID0/state | awk '{print $NF}')
-          if [ $lid_state = "closed" ]; then
-              systemctl suspend
-          fi
-        '';
-
-      powerEventCommands =
-        ''
-          systemctl suspend
-        '';
-    };
   };
 
   hardware.opengl.enable = true;
