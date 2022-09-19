@@ -18,7 +18,7 @@
     ./services/locate.nix
     ./services/openssh.nix
     ./services/keybase.nix
-    ./services/printing.nix
+    ./services/printing
     ./services/bluetooth.nix
   ];
 
