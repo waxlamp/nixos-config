@@ -22,6 +22,7 @@
     ./services/bluetooth.nix
     ./services/avahi.nix
     ./services/virtualization.nix
+    ./services/audio.nix
   ];
 
   environment.shells = [
@@ -95,15 +96,6 @@
           systemctl suspend
         '';
     };
-  };
-
-  # PulseAudio
-  sound.enable = true;
-  hardware.pulseaudio = {
-    enable = true;
-
-    # The full package includes bluetooth support.
-    package = nixpkgs.pulseaudioFull;
   };
 
   hardware.bluetooth.enable = true;
