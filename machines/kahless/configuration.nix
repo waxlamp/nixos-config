@@ -18,6 +18,7 @@
     ./services/locate.nix
     ./services/openssh.nix
     ./services/keybase.nix
+    ./services/bluetooth.nix
   ];
 
   environment.shells = [
@@ -32,9 +33,6 @@
       nixpkgs.brlaser
       (nixpkgs.callPackage ../../printers/hll2395dw-cups.nix {})
     ];
-
-    # Enable bluetooth.
-    blueman.enable = true;
 
     # Avahi
     avahi = {
