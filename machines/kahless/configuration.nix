@@ -20,6 +20,7 @@
     ./services/keybase.nix
     ./services/printing
     ./services/bluetooth.nix
+    ./services/avahi.nix
   ];
 
   environment.shells = [
@@ -28,16 +29,6 @@
 
   # List services that you want to enable:
   services = {
-    # Avahi
-    avahi = {
-      enable = true;
-      nssmdns = true;
-      publish = {
-        enable = true;
-        addresses = true;
-      };
-    };
-
     # Enable the X11 windowing system.
     xserver = {
       enable = true;
