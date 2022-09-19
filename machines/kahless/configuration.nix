@@ -18,6 +18,7 @@
     ./services/locate.nix
     ./services/openssh.nix
     ./services/keybase.nix
+    ./services/printing.nix
     ./services/bluetooth.nix
   ];
 
@@ -27,13 +28,6 @@
 
   # List services that you want to enable:
   services = {
-    # Enable CUPS to print documents.
-    printing.enable = true;
-    printing.drivers = [
-      nixpkgs.brlaser
-      (nixpkgs.callPackage ../../printers/hll2395dw-cups.nix {})
-    ];
-
     # Avahi
     avahi = {
       enable = true;
