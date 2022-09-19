@@ -17,6 +17,7 @@
     ./keyboard-layout.nix
     ./services/locate.nix
     ./services/openssh.nix
+    ./services/keybase.nix
   ];
 
   environment.shells = [
@@ -25,9 +26,6 @@
 
   # List services that you want to enable:
   services = {
-    # Keybase service
-    keybase.enable = true;
-
     # Enable CUPS to print documents.
     printing.enable = true;
     printing.drivers = [
