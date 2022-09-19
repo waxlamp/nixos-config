@@ -16,6 +16,7 @@
     ./nsswitch.nix
     ./keyboard-layout.nix
     ./services/locate.nix
+    ./services/openssh.nix
   ];
 
   environment.shells = [
@@ -24,9 +25,6 @@
 
   # List services that you want to enable:
   services = {
-    # Enable the OpenSSH daemon.
-    openssh.enable = true;
-
     # Keybase service
     keybase.enable = true;
 
