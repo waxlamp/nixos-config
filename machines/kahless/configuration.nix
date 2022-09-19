@@ -21,6 +21,7 @@
     ./services/printing
     ./services/bluetooth.nix
     ./services/avahi.nix
+    ./services/virtualization.nix
   ];
 
   environment.shells = [
@@ -93,22 +94,6 @@
         ''
           systemctl suspend
         '';
-    };
-  };
-
-  virtualisation = {
-    docker.enable = true;
-
-    virtualbox = {
-      guest = {
-        enable = false;
-      };
-
-      host = {
-        enable = false;
-        enableHardening = true;
-        addNetworkInterface = true;
-      };
     };
   };
 
