@@ -14,6 +14,7 @@
     ./packages.nix
     ./networking.nix
     ./nsswitch.nix
+    ./users.nix
     ./keyboard-layout.nix
     ./services/locate.nix
     ./services/openssh.nix
@@ -24,10 +25,6 @@
     ./services/virtualization.nix
     ./services/audio.nix
     ./services/power-management.nix
-  ];
-
-  environment.shells = [
-    nixpkgs.zsh
   ];
 
   # List services that you want to enable:
@@ -83,23 +80,5 @@
     tmux.enable = true;
 
     zsh.enable = true;
-  };
-
-  users.extraUsers = {
-    roni = {
-      name = "roni";
-      isNormalUser = true;
-      group = "users";
-      extraGroups = [
-        "wheel"
-        "vboxusers"
-        "docker"
-        "networkmanager"
-      ];
-      uid = 1000;
-      home = "/home/roni";
-      shell = nixpkgs.zsh;
-      packages = with nixpkgs; [];
-    };
   };
 }
