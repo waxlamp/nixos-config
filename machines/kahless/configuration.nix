@@ -26,36 +26,8 @@
     ./services/audio.nix
     ./services/power-management.nix
     ./services/touchpad.nix
+    ./services/x11.nix
   ];
-
-  # List services that you want to enable:
-  services = {
-    # Enable the X11 windowing system.
-    xserver = {
-      enable = true;
-      layout = "us";
-      videoDrivers = ["intel"];
-
-      windowManager = {
-          xmonad = {
-              enable = true;
-              enableContribAndExtras = true;
-          };
-      };
-
-      desktopManager.xterm.enable = false;
-
-      displayManager = {
-        sessionCommands = ''
-          sh ~/.xinitrc
-        '';
-
-        defaultSession = "none+xmonad";
-      };
-    };
-  };
-
-  hardware.opengl.enable = true;
 
   programs = {
     gnupg.agent.enable = true;
