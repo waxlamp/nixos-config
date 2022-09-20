@@ -5,7 +5,7 @@
     nixpkgs.zsh
   ];
 
-  users.extraUsers = {
+  users.users = {
     roni = {
       name = "roni";
       isNormalUser = true;
