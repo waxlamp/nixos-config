@@ -25,6 +25,7 @@
     ./services/virtualization.nix
     ./services/audio.nix
     ./services/power-management.nix
+    ./services/touchpad.nix
   ];
 
   # List services that you want to enable:
@@ -51,25 +52,7 @@
 
         defaultSession = "none+xmonad";
       };
-
-      synaptics = {
-          enable = false;
-          palmDetect = true;
-          tapButtons = true;
-          twoFingerScroll = true;
-      };
-
-      libinput = {
-        enable = true;
-        touchpad = {
-          clickMethod = "clickfinger";
-          additionalOptions = ''
-            Option "TappingButtonMap" "lmr"
-          '';
-        };
-      };
     };
-
   };
 
   hardware.opengl.enable = true;
