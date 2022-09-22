@@ -10,8 +10,6 @@ in {
   # Let Home Manager install and manage itself.
   programs = {
     home-manager.enable = true;
-
-    command-not-found.enable = false;
   };
 
   # Home Manager needs a bit of information about you and the
