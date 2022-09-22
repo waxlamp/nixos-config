@@ -1,0 +1,7 @@
+{ ... }:
+
+{
+  services.locate = {
+    enable = true;
+  };
+}
