@@ -3,7 +3,6 @@
 {
   environment.systemPackages = with nixpkgs; [
     pmutils
-    networkmanagerapplet
     docker-compose
     alacritty
     tmuxinator
@@ -18,4 +17,10 @@
     # Launcher for use with XMonad
     rofi
   ];
+
+  programs = {
+    nm-applet.enable = true;
+    tmux.enable = true;
+    zsh.enable = true;
+  };
 }

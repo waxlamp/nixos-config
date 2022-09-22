@@ -28,12 +28,4 @@
     ./services/touchpad.nix
     ./services/x11.nix
   ];
-
-  programs = {
-    gnupg.agent.enable = true;
-
-    tmux.enable = true;
-
-    zsh.enable = true;
-  };
 }
