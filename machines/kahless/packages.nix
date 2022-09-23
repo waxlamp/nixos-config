@@ -33,6 +33,7 @@
     feh
     file
     flameshot
+    frobtads
     fzf
     gitFull
     htop
