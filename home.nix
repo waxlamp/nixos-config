@@ -27,43 +27,5 @@ in {
 
   home.packages = with nixpkgs; [
     elgato
-
-    acpi
-    bat
-    fzf
-    htop
-    lsof
-    brave
-    colordiff
-    diff-so-fancy
-    evince
-    fd
-    feh
-    file
-    flameshot
-    gitFull
-    killall
-    mpv
-    ncdu
-    neovim
-    ntp
-    pavucontrol
-    python3
-    shotgun
-    slack
-    slop
-    spotify
-    trayer
-    unclutter
-    unzip
-    up
-    vscode
-    xclip
-    xlockmore
-    xorg.xbacklight
-    xss-lock
-    yadm
-    yarn
-    zoom-us
   ];
 }
