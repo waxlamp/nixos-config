@@ -37,19 +37,25 @@
       };
     };
 
-    # Convert a flake into a package set (allow unfree packages by default).
-    unflake = flake: import flake {
+    # An overlay function to bring elgato into the mix.
+    elgato-overlay = final: prev: {
+      elgato = elgato.defaultPackage.${system};
+    };
+
+    # Convert a flake into a package set (allow unfree packages by default, and
+    # accept a list of overlay functions to apply).
+    unflake = { flake, overlays ? [ ] }: import flake {
       inherit system;
       config.allowUnfree = true;
+      overlays = overlays;
     };
 
     # Arrange to pass the instantiated package sets into every module (via the
     # `specialArgs` value).
-    nixpkgs' = unflake nixpkgs;
+    nixpkgs' = unflake { flake = nixpkgs; overlays = [ elgato-overlay ]; };
     specialArgs = {
       nixpkgs = nixpkgs';
-      nixpkgs-unstable = unflake nixpkgs-unstable;
-      elgato = elgato.defaultPackage.${system};
+      nixpkgs-unstable = unflake { flake = nixpkgs-unstable; };
       pkgs = nixpkgs';
     };
   in {

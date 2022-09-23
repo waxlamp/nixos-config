@@ -2,20 +2,56 @@
 
 {
   environment.systemPackages = with nixpkgs; [
-    pmutils
-    docker-compose
+    # System packages.
+    acpi
     alacritty
-    tmuxinator
     kbfs
-
+    pmutils
+    rofi
+    shotgun
+    slop
+    trayer
+    tmuxinator
+    unclutter
+    xclip
+    xlockmore
+    xorg.xbacklight
     xorg.xmodmap
-
-    # Haskell packages for XMonad
+    xss-lock
     xmonad-with-packages
     xmobar
 
-    # Launcher for use with XMonad
-    rofi
+    # User packages.
+    bat
+    brave
+    colordiff
+    diff-so-fancy
+    elgato
+    evince
+    docker-compose
+    fd
+    feh
+    file
+    flameshot
+    fzf
+    gitFull
+    htop
+    killall
+    lsof
+    mpv
+    ncdu
+    neovim
+    ntp
+    pavucontrol
+    python3
+    slack
+    spotify
+    unzip
+    up
+    vscode
+    yadm
+    yarn
+    zoom-us
   ];
 
   programs = {
