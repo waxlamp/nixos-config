@@ -30,14 +30,9 @@ in {
 
     acpi
     bat
-    firefox
     fzf
     htop
-    jetbrains-mono
-    jq
     lsof
-    magic-wormhole
-    bitwarden-cli
     brave
     colordiff
     diff-so-fancy
@@ -48,29 +43,17 @@ in {
     flameshot
     gitFull
     killall
-    lazygit
-    miller
     mpv
     ncdu
     neovim
-    nodejs
     ntp
     pavucontrol
-    pipenv
-    poppler_utils
     python3
-    python38Packages.poetry
-    rhythmbox
     shotgun
-    silver-searcher
     slack
     slop
     spotify
-    sweethome3d.application
-    terraform_0_15
-    tmuxinator
     trayer
-    tree
     unclutter
     unzip
     up
