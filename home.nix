@@ -3,7 +3,6 @@
 let
   nixpkgs = specialArgs.nixpkgs;
   nixpkgs-unstable = specialArgs.nixpkgs-unstable;
-  elgato = specialArgs.elgato;
 in {
   # Let Home Manager install and manage itself.
   programs = {
@@ -24,8 +23,4 @@ in {
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "21.03";
-
-  home.packages = with nixpkgs; [
-    elgato
-  ];
 }

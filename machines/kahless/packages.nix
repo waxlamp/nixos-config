@@ -26,6 +26,7 @@
     brave
     colordiff
     diff-so-fancy
+    elgato
     evince
     docker-compose
     fd
