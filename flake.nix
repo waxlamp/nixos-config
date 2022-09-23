@@ -37,10 +37,14 @@
       };
     };
 
-    # An overlay function to bring elgato into the mix.
-    elgato-overlay = final: prev: {
-      elgato = elgato.defaultPackage.${system};
-    };
+    # Overlays.
+    overlays = [
+      (final: prev: {
+        elgato = elgato.defaultPackage.${system};
+      })
+
+      (import ./overlays/frobtads.nix)
+    ];
 
     # Convert a flake into a package set (allow unfree packages by default, and
     # accept a list of overlay functions to apply).
@@ -52,7 +56,7 @@
 
     # Arrange to pass the instantiated package sets into every module (via the
     # `specialArgs` value).
-    nixpkgs' = unflake { flake = nixpkgs; overlays = [ elgato-overlay ]; };
+    nixpkgs' = unflake { flake = nixpkgs; overlays = overlays; };
     specialArgs = {
       nixpkgs = nixpkgs';
       nixpkgs-unstable = unflake { flake = nixpkgs-unstable; };
