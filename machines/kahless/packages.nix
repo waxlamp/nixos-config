@@ -10,14 +10,11 @@
     rofi
     shotgun
     slop
-    trayer
     tmuxinator
-    unclutter
     xclip
     xlockmore
     xorg.xbacklight
     xorg.xmodmap
-    xss-lock
     xmonad-with-packages
     xmobar
 
@@ -56,7 +53,6 @@
   ];
 
   programs = {
-    nm-applet.enable = true;
     tmux.enable = true;
     zsh.enable = true;
   };
