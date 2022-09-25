@@ -1,4 +1,4 @@
-{ nixpkgs, ... }:
+{ nixpkgs, config, ... }:
 
 {
   hardware.opengl.enable = true;
@@ -21,23 +21,25 @@
       sessionCommands = ''
         #xbindkeys
 
-        # Run unclutter so the mouse pointer disappears after five seconds.
+        # Hide the mouse pointer after five second idle.
         ${unclutter}/bin/unclutter&
 
         # Set DPI.
         ${xorg.xrandr}/bin/xrandr --dpi 192
 
-        # Black root window
+        # Set a black root window.
         ${xorg.xsetroot}/bin/xsetroot -solid black
 
         # Trigger xlock on suspend.
         ${xss-lock}/bin/xss-lock -- ${xlockmore}/bin/xlock -mode blank&
 
-        # Turn capslock into super
-        xmodmap ~/.xmodmap
+        # Run keyboard customizations.
+        ${xorg.xmodmap}/bin/xmodmap ${config.xmodmap-config}
 
-        # Start trayer
+        # Start trayer.
         ${trayer}/bin/trayer --edge top --align left --SetDockType true --SetPartialStrut true --expand true --width 3 --transparent true --alpha 0 --tint 0x000000 --height 32&
+
+        # Launch network manager applet (shows up in trayer).
         ${networkmanagerapplet}/bin/nm-applet&
       '';
 
