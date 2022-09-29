@@ -51,6 +51,7 @@
     unflake = { flake, overlays ? [ ] }: import flake {
       inherit system;
       config.allowUnfree = true;
+      config.permittedInsecurePackages = [ ];
       overlays = overlays;
     };
 
