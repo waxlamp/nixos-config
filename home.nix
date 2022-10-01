@@ -51,5 +51,12 @@ in {
 
     # Alacritty.
     ".config/alacritty/alacritty.yml".source = ./sources/alacritty/alacritty.yml;
+
+    # Git.
+    ".gitconfig".source = nixpkgs.substituteAll {
+      src = ./sources/git/gitconfig;
+
+      diffsofancy = "${diff-so-fancy}/bin/diff-so-fancy";
+    };
   };
 }
