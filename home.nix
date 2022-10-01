@@ -24,8 +24,8 @@ in {
   # changes in each release.
   home.stateVersion = "21.03";
 
-  # XMonad.
   home.file = with nixpkgs; {
+    # XMonad.
     ".xmonad/xmonad.hs".source = nixpkgs.substituteAll {
       src = ./sources/xmonad/xmonad.hs;
 
@@ -48,5 +48,8 @@ in {
 
       acpi = "${acpi}/bin/acpi";
     };
+
+    # Alacritty.
+    ".config/alacritty/alacritty.yml".source = ./sources/alacritty/alacritty.yml;
   };
 }

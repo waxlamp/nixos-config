@@ -1,0 +1,8 @@
+# Font configuration
+font:
+  # Normal (roman) font face
+  normal:
+    family: monospace
+
+  # Point size
+  size: 6.0
