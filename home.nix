@@ -23,4 +23,30 @@ in {
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "21.03";
+
+  # XMonad.
+  home.file = with nixpkgs; {
+    ".xmonad/xmonad.hs".source = nixpkgs.substituteAll {
+      src = ./sources/xmonad/xmonad.hs;
+
+      alacritty = "${alacritty}/bin/alacritty";
+      rofi = "${rofi}/bin/rofi";
+      nmcli = "${networkmanager}/bin/nmcli";
+      elgato = "${elgato}/bin/elgato";
+      xbacklight = "${xorg.xbacklight}/bin/xbacklight";
+      xlock = "${xlockmore}/bin/xlock";
+      xrandr = "${xorg.xrandr}/bin/xrandr";
+      xmobar = "${xmobar}/bin/xmobar";
+      xmonad = "${xmonad-with-packages}/bin/xmonad";
+    };
+
+    ".xmonad/xmobarrc".source = ./sources/xmonad/xmobarrc;
+
+    ".xmonad/battpercent.sh".source = nixpkgs.substituteAll {
+      src = ./sources/xmonad/battpercent.sh;
+      isExecutable = true;
+
+      acpi = "${acpi}/bin/acpi";
+    };
+  };
 }

@@ -3,7 +3,6 @@
 {
   environment.systemPackages = with nixpkgs; [
     # System packages.
-    acpi
     alacritty
     kbfs
     pmutils
