@@ -58,5 +58,8 @@ in {
 
       diffsofancy = "${diff-so-fancy}/bin/diff-so-fancy";
     };
+
+    # Neovim.
+    ".config/nvim/init.vim".source = ./sources/neovim/init.vim;
   };
 }
