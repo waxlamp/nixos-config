@@ -61,5 +61,8 @@ in {
 
     # Neovim.
     ".config/nvim/init.vim".source = ./sources/neovim/init.vim;
+
+    # Tmux.
+    ".tmux.conf".source = ./sources/tmux/tmux.conf;
   };
 }
