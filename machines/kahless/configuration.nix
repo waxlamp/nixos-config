@@ -15,7 +15,8 @@
     ./networking.nix
     ./nsswitch.nix
     ./users.nix
-    ./keyboard-layout.nix
+    ./udev-keyboard.nix
+    ./xmodmap
     ./services/locate.nix
     ./services/openssh.nix
     ./services/keybase.nix

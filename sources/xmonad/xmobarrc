@@ -1,0 +1,17 @@
+Config { font = "xft:Monospace:pixelsize=24:antialias=true:hinting=true"
+       , bgColor = "black"
+       , fgColor = "WhiteSmoke"
+       , position = TopSize R 95 40
+       , lowerOnStart = True
+       , commands = [ Run Cpu ["-t","C:<total>%", "-L","3","-H","50","--normal","green","--high","red"] 10
+                    , Run Memory ["-t","M:<usedratio>%"] 10
+                    , Run Swap [] 10
+                    , Run Com "uname" ["-s","-r"] "" 36000
+                    , Run Com "/home/roni/.xmonad/battpercent.sh" [] "battery" 10
+                    , Run Date "%A, %B %-e, %Y <fc=#afaf87>|</fc> %H:%M:%S" "date" 10
+                    , Run StdinReader
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ %battery%<fc=#afaf87>|</fc> %cpu% <fc=#afaf87>|</fc> %memory% <fc=#afaf87>|</fc> %date%"
+       }

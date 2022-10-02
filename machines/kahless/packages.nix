@@ -3,29 +3,23 @@
 {
   environment.systemPackages = with nixpkgs; [
     # System packages.
-    acpi
     alacritty
     kbfs
     pmutils
     rofi
     shotgun
     slop
-    trayer
     tmuxinator
-    unclutter
     xclip
     xlockmore
     xorg.xbacklight
     xorg.xmodmap
-    xss-lock
     xmonad-with-packages
     xmobar
 
     # User packages.
     bat
     brave
-    colordiff
-    diff-so-fancy
     elgato
     evince
     docker-compose
@@ -56,7 +50,6 @@
   ];
 
   programs = {
-    nm-applet.enable = true;
     tmux.enable = true;
     zsh.enable = true;
   };
