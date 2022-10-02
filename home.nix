@@ -64,5 +64,8 @@ in {
 
     # Tmux.
     ".tmux.conf".source = ./sources/tmux/tmux.conf;
+
+    # ZShell.
+    ".zshrc".source = ./sources/zsh/zshrc;
   };
 }
