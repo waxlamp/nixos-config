@@ -21,7 +21,7 @@ in {
 
   home.file = with nixpkgs; {
     # XMonad.
-    ".xmonad/xmonad.hs".source = nixpkgs.substituteAll {
+    ".xmonad/xmonad.hs".source = substituteAll {
       src = ./sources/xmonad/xmonad.hs;
 
       alacritty = "${alacritty}/bin/alacritty";

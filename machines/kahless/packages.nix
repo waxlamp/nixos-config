@@ -3,19 +3,13 @@
 {
   environment.systemPackages = with nixpkgs; [
     # System packages.
-    alacritty
     kbfs
     pmutils
-    rofi
     shotgun
     slop
     tmuxinator
     xclip
-    xlockmore
-    xorg.xbacklight
     xorg.xmodmap
-    xmonad-with-packages
-    xmobar
 
     # User packages.
     bat
