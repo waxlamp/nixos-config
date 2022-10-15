@@ -2,10 +2,6 @@
 
 {
   environment.systemPackages = with nixpkgs; [
-    # System packages.
-    kbfs
-
-    # User packages.
     bat
     brave
     elgato
