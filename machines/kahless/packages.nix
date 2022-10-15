@@ -7,7 +7,6 @@
     pmutils
     shotgun
     slop
-    tmuxinator
     xclip
     xorg.xmodmap
 
