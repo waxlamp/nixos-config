@@ -4,7 +4,6 @@
   environment.systemPackages = with nixpkgs; [
     # System packages.
     kbfs
-    pmutils
     shotgun
     slop
     xorg.xmodmap
