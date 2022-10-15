@@ -21,7 +21,7 @@ in {
 
   home.file = with nixpkgs; {
     # XMonad.
-    ".xmonad/xmonad.hs".source = nixpkgs.substituteAll {
+    ".xmonad/xmonad.hs".source = substituteAll {
       src = ./sources/xmonad/xmonad.hs;
 
       alacritty = "${alacritty}/bin/alacritty";
@@ -37,7 +37,7 @@ in {
 
     ".xmonad/xmobarrc".source = ./sources/xmonad/xmobarrc;
 
-    ".xmonad/battpercent.sh".source = nixpkgs.substituteAll {
+    ".xmonad/battpercent.sh".source = substituteAll {
       src = ./sources/xmonad/battpercent.sh;
       isExecutable = true;
 
@@ -48,7 +48,7 @@ in {
     ".config/alacritty/alacritty.yml".source = ./sources/alacritty/alacritty.yml;
 
     # Git.
-    ".gitconfig".source = nixpkgs.substituteAll {
+    ".gitconfig".source = substituteAll {
       src = ./sources/git/gitconfig;
 
       diffsofancy = "${diff-so-fancy}/bin/diff-so-fancy";
@@ -61,6 +61,11 @@ in {
     ".tmux.conf".source = ./sources/tmux/tmux.conf;
 
     # ZShell.
-    ".zshrc".source = ./sources/zsh/zshrc;
+    ".zshrc".source = substituteAll {
+      src = ./sources/zsh/zshrc;
+
+      shotgun = "${shotgun}/bin/shotgun";
+      slop = "${slop}/bin/slop";
+    };
   };
 }
