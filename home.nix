@@ -62,5 +62,10 @@ in {
 
     # ZShell.
     ".zshrc".source = substituteAll {
+      src = ./sources/zsh/zshrc;
+
+      shotgun = "${shotgun}/bin/shotgun";
+      slop = "${slop}/bin/slop";
+    };
   };
 }

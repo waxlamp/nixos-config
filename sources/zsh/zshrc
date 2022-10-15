@@ -106,7 +106,7 @@ alias serve="python3 -m http.server"
 function faketty { script -qfc "$(printf "%q " "$@")"; }
 
 function xcap() {
-    shotgun -f png -g $(slop) $1
+    @shotgun@ -f png -g $(@slop@) $1
 }
 
 # nix-shell shortcut
