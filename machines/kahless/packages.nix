@@ -7,7 +7,6 @@
     pmutils
     shotgun
     slop
-    xclip
     xorg.xmodmap
 
     # User packages.
@@ -37,6 +36,7 @@
     unzip
     up
     vscode
+    xclip
     yadm
     yarn
     zoom-us
