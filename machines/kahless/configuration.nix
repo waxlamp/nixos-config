@@ -17,6 +17,7 @@
     ./users.nix
     ./udev-keyboard.nix
     ./xmodmap
+    ./gnupg.nix
     ./services/locate.nix
     ./services/openssh.nix
     ./services/keybase.nix

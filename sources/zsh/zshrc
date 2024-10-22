@@ -34,6 +34,32 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 
+# Nix runners.
+function nixr () {
+    if [ $# -lt 1 ]; then
+        echo "usage: nr CMD [ARG1 ARG2 ...]" >&2
+        return 1
+    fi
+
+    progname=$1
+
+    shift
+    args=$*
+
+    nix run nixpkgs#$progname -- $args
+}
+
+function nixs () {
+    if [ $# -lt 1 ]; then
+        echo "usage: ns PKG" >&2
+        return 1
+    fi
+
+    pkgname=$1
+
+    nix shell nixpkgs#$pkgname
+}
+
 # Cheat sheet function.
 function cheat () {
     curl cht.sh/$1
@@ -108,8 +134,5 @@ function faketty { script -qfc "$(printf "%q " "$@")"; }
 function xcap() {
     @shotgun@ -f png -g $(@slop@) $1
 }
-
-# nix-shell shortcut
-alias nixs="nix-shell --command zsh"
 
 alias lever="echo @zachmullen @brianhelba @danlamanna | xclip -i"

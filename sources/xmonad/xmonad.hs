@@ -3,6 +3,7 @@ import XMonad
 import Data.Ratio ((%))
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.NoBorders
 import XMonad.Layout.LayoutScreens
@@ -81,8 +82,8 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
       , ((modMask              , xK_period), sendMessage (IncMasterN (-1)))
 
     -- Connect/disconnect from the Kitware VPN
-      , ((modMask              , xK_v), spawn "@nmcli@ c up kitware passwd-file /etc/nixos/vpn-secret")
-      , ((modMask .|. shiftMask, xK_v), spawn "@nmcli@ c down kitware")
+      , ((modMask              , xK_v), spawn "@nmcli@ c up KHQ passwd-file /etc/nixos/vpn-secret")
+      , ((modMask .|. shiftMask, xK_v), spawn "@nmcli@ c down KHQ")
 
     -- Toggle elgato light
       , ((modMask              , xK_e), spawn "@elgato@ toggle")
@@ -161,9 +162,11 @@ myLayout = avoidStruts $ (tiled ||| noBorders Full)
 --
 myManageHook = composeAll
     [ className =? "Gimp"           --> doFloat
-      , className =? "feh"            --> doFloat
+      , className =? "feh"            --> doCenterFloat
       , resource  =? "desktop_window" --> doIgnore
       , resource  =? "kdesktop"       --> doIgnore
+    , title =? "Ozone X11" --> doCenterFloat
+    , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_NOTIFICATION" --> doCenterFloat
     ]
 
 myFocusFollowsMouse :: Bool
